@@ -1,7 +1,7 @@
 # GoodFirstIssue-Dev
 
 A wall-to-wall re-write of [goodfirstissue.com](http://goodfirstissue.com/) using React, plus some of the
-tools that [sourcecred](https://github.com/sourcecred/sourcecred), with the ulterior motive of gaining
+tools used by [sourcecred](https://github.com/sourcecred/sourcecred), with the ulterior motive of gaining
 a better understanding of those tools.
 
 ## Goals
@@ -42,13 +42,12 @@ the total number of "good first issues" (see above for definition of that term),
 and when the project was last updated.
 
 The main use of the site so far is to choose a language, search, and start clicking the links on the repos
-to go check them out. That's about 90% of the intended functionality. I don't feel a need to provide any more info about a repo than it's owner/name and that link to it's GitHub page. But I'm not against adding low-items that make
-the list easier to scan, eg maybe a repo description.
+to go check them out. That's about 90% of the intended functionality. I don't feel a need to provide any more info about a repo than it's owner/name and that link to it's GitHub page. But I'm not against adding low-cost items that make the list easier to scan, eg a repo description.
 
 * I would like to add a button beside the repo link that expands and shows the issues we pulled from Github,
 sorted by date, with info like the issue title, the labels, maybe the number of comments.
 
-The reason that would be useful is because I find myself checking out the issues tab first when I go check
+The reason that would be useful is because I find myself checking out the issues tab first
 after clicking the link to visit the repo, so it sort of makes sense to summarize some of that info for
 better scanning, with less effort for the user.
 
@@ -59,4 +58,5 @@ list of the labels we currently search for, with the ability to remove any of th
 
 #### Technical Foundation
 
-* 
+* Test everything
+* Prioritize a functional programming style
