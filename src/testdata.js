@@ -66,11 +66,11 @@ export const testData_1 = {
             "owner": {
               "login": "same"
             },
-            "updatedAt": "2019-01-24T12:16:46Z",
-            "url": "https://github.com/dm-drogeriemarkt/foreman_wreckingball",
+            "updatedAt": "2019-01-23T19:47:44Z",
+            "url": "https://github.com/outcomesinsights/conceptql",
             "name": "same",
             "stargazers": {
-              "totalCount": 5
+              "totalCount": 12
             }
           },
           "url": "https://github.com/dm-drogeriemarkt/foreman_wreckingball/issues/82",

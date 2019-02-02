@@ -1,11 +1,18 @@
 import React from 'react';
 
 export function LanguagePicker(props) {
+
+  function handleChange(e) {
+    const language = e.target.options[e.target.selectedIndex].value
+    console.log(language)
+    props.handleChange(language)
+  }
+
   return (
 <React.Fragment>
   <form>
-		<select>
-		  <option>Choose Language</option>
+		<select onChange={handleChange}>
+		  <option value=''>Choose Language</option>
 				<option value="ActionScript">ActionScript</option>
 				<option value="C">C</option>
 				<option value="C#">C#</option>
