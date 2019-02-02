@@ -1,17 +1,24 @@
 import React from 'react';
 import './resultsTable.css'
+import { LanguagePicker } from './languagePicker'
 
 export default class ResultsTable extends React.Component {
   render() {
     const { data } = this.props;
 
+    function renderLanuagePicker() {
+      return (
+        <LanguagePicker />
+      )
+    }
+
     function renderHeader() {
       return(
-        <thead className="TableHead">
+        <thead>
         <tr>
           <th>Repository</th>
-          <th>Good First Issues</th>
-          <th>Stars</th>
+          <th className="hightlightHover">Good First Issues</th>
+          <th className="hightlightHover">Stars</th>
           <th>Last Updated</th>
         </tr>
         </thead>
@@ -21,27 +28,28 @@ export default class ResultsTable extends React.Component {
     function renderTableRows() {
       return(
         <React.Fragment>
-        { data.repos.map((repo) => (
-            <tr>
-              <td>{repo.name}</td>
-              <td>{repo.issues}</td>
-              <td>{repo.stars}</td>
-              <td>{repo.lastUpdate}</td>
-            </tr>
+        { data.map((repo) => (
+              <tr key={repo.title}>
+                <td>{repo.title}</td>
+                <td>{repo.issues.length}</td>
+                <td>{repo.stars}</td>
+                <td>{repo.lastUpdate}</td>
+              </tr>
         ))}
         </React.Fragment>
       )
     }
 
-    const tableStyle = { width: '100%' }
-
     return(
-      <table style={tableStyle}>
+      <React.Fragment>
+      {renderLanuagePicker()}
+      <table style={{width: '100%'}}>
       {renderHeader()}
       {renderTableRows()}
       <tbody>
       </tbody>
       </table>
+      </React.Fragment>
     )
   }
 }
