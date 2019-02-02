@@ -24,9 +24,6 @@ describe('organizeIssuesIntoRepos()', () => {
     expect(repos.size).toBe(3)
   });
 
-  it('correctly formats repo', () => {
-
-  });
 })
 
 describe('sortReposByIssueCount()', () => {
