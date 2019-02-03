@@ -7,17 +7,30 @@ export function loadTestData() {
   return repoMap
 }
 
+var sortIssueCount = (r1, r2) => r2.issues.length - r1.issues.length
+var sortStarCount = (r1, r2) => r2.stars - r1.stars
 
-export function sortReposByIssueCount(repoMap) {
+function sortRepos(firstSort, secondSort, repoMap) {
   const repos = Array.from(repoMap.values())
-  var sortRepos = (r1, r2) => r2.issues.length - r1.issues.length
+
+  function sortRepos(r1, r2) {
+    const result = firstSort(r1, r2)
+    if (result === 0) {
+      return secondSort(r1, r2)
+    } else {
+      return result
+    }
+  }
+
   return repos.sort(sortRepos)
 }
 
+export function sortReposByIssueCount(repoMap) {
+  return sortRepos(sortIssueCount, sortStarCount, repoMap)
+}
+
 export function sortReposByStars(repoMap) {
-  const repos = Array.from(repoMap.values())
-  var sortRepos = (r1, r2) => r2.stars - r1.stars
-  return repos.sort(sortRepos)
+  return sortRepos(sortStarCount, sortIssueCount, repoMap)
 }
 
 export function getIssues(data) {

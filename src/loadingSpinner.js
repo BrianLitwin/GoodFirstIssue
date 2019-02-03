@@ -1,7 +1,10 @@
+import React from 'react';
+import './loadingSpinner.js';
 
-
-class LoadingSpinner extends React.Component {
+export class LoadingSpinner extends React.Component {
   render() {
-    return 
+    return (
+      <div className="spinner"></div>
+    )
   }
 }
