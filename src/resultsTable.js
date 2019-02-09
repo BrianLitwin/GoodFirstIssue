@@ -1,5 +1,7 @@
 import React from 'react';
 import './resultsTable.css'
+import {RepoRow} from './repoRow'
+import {IssueRow} from './issueRow'
 import { sortReposByIssueCount, sortReposByStars } from './load'
 
 export default class ResultsTable extends React.Component {
@@ -15,7 +17,7 @@ export default class ResultsTable extends React.Component {
     const { sortBy } = this.state;
 
     let repos;
-    switch (sortBy) {
+    switch (sortBy) { //TODO: if you set the sortBy state, the expansion state of the repo is off 
       case 'issues':
         repos = sortReposByIssueCount(data)
         break
@@ -45,22 +47,21 @@ export default class ResultsTable extends React.Component {
       return(
         <React.Fragment>
         { repos.map((repo) => (
-              <tr key={repo.title}>
-                <td>{repo.title}</td>
-                <td>{repo.issues.length}</td>
-                <td>{repo.stars}</td>
-                <td>{repo.lastUpdate}</td>
-              </tr>
+            <RepoRow repo={repo}>
+              {repo.issues.map((issue) => {
+                return <IssueRow issue={issue}/>
+              })}
+            </RepoRow>
         ))}
         </React.Fragment>
       )
     }
-
+//TODO: Show table headers when loading
     return(
       <table style={{width: '100%'}}>
       {renderHeader()}
-      {renderTableRows()}
       <tbody>
+      {renderTableRows()}
       </tbody>
       </table>
     )

@@ -1,11 +1,20 @@
 import React from 'react';
 
-export function LabelPicker(props) {
-  return(
-    <select style={{layout:'inline'}} multiple='multiple'>
-      { props.labels.map((label) => {
-        return <option value={label.label}>{label.label}</option>
-      })}
-    </select>
-  )
+export class LabelPicker extends React.Component {
+
+  render() {
+    const {hidden, labels, handleSubmit, newLabel, handleChange} = this.props
+
+    return(
+      <div hidden={hidden}>
+        <ul>
+          {labels.map((label) => (<li key={label}>{label}</li>))}
+        </ul>
+        <form onSubmit={handleSubmit}>
+          <input className='label-input' value={newLabel} onChange={handleChange}/>
+          <button>Add</button>
+        </form>
+      </div>
+    )
+  }
 }

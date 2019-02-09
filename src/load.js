@@ -1,11 +1,4 @@
-import { testData_1 } from './testdata'
 
-export function loadTestData() {
-  const data = testData_1
-  const issues = getIssues(data).issues
-  const repoMap = organizeIssuesIntoRepos(issues)
-  return repoMap
-}
 
 var sortIssueCount = (r1, r2) => r2.issues.length - r1.issues.length
 var sortStarCount = (r1, r2) => r2.stars - r1.stars
@@ -33,18 +26,30 @@ export function sortReposByStars(repoMap) {
   return sortRepos(sortStarCount, sortIssueCount, repoMap)
 }
 
-export function getIssues(data) {
+export function processHttpResponseData(data) {
     const issues = data.data.search.edges.map(edge=>{ return edge.node  });
     const pageInfo = data.data.search.pageInfo;
-    return { issues, pageInfo }
+		const endCursor = pageInfo.endCursor
+		setDates(issues)
+    return { issues, endCursor }
+}
+
+
+// do this here so that we can examine against cutoff date - // TODO: test this
+export function setDates(issues) {
+	issues.forEach((issue) => {
+		issue.date = new Date(issue.createdAt).getTime()
+	})
 }
 
 export function organizeIssuesIntoRepos(issues) {
-  const repositories = new Map()
-  issues.forEach((issue) => {
-    makeOrUpdateRepo(issue, repositories)
+  const repoMap = new Map()
+  issues.filter((issue) => {
+		return issue.repository !== undefined // TODO test this
+	}).forEach((issue) => {
+    makeOrUpdateRepo(issue, repoMap)
   })
-  return repositories
+  return repoMap
 }
 
 function makeRepo(issue) {
@@ -52,17 +57,26 @@ function makeRepo(issue) {
   const title = repoTitle(issue)
   const stars = repo.stargazers.totalCount
   const lastUpdate = repo.updatedAt
-  const link = repo.url
+  const url = repo.url
   const issues = [formatIssue(issue)]
+	const issueMap = new Set()
 
-  return { title, stars, lastUpdate, link, issues,
+	issueMap.add(issues[0].number) // TODO: Test this- duplicate issues
+
+  return { title, stars, lastUpdate, url, issues, issueMap,
     addIssue: function(issue) {
-      this.issues.push(formatIssue(issue))
+			if (!this.issueMap.has(issue.number)) {
+				this.issues.push(formatIssue(issue)) // TODO: Test this -no duplicate
+				this.issueMap.add(issue.number)
+			} else {
+				console.log("duplicate issue")
+			}
     }
   }
 }
 
 function repoTitle(issue) {
+	// TODO sometimes you get passed an empty object here
   return issue.repository.owner.login + "/" + issue.repository.name
 }
 
@@ -71,19 +85,26 @@ function makeOrUpdateRepo(issue, repositories) {
 
   if (repositories.has(title)) {
     const repository = repositories.get(title)
-    repository.addIssue(formatIssue(issue))
+    repository.addIssue(issue)
   } else {
     repositories.set(title, makeRepo(issue))
   }
 }
+
+
+
+//
+// TODO: This is very dumb method
+//
+
 
 function formatIssue(issue) {
   const url = issue.url
   const createdAt = issue.createdAt
   const title = issue.title
   const number = issue.number
-
+	const date = issue.date
   return {
-    title, number, url, createdAt
+    title, number, url, createdAt, date
   }
 }

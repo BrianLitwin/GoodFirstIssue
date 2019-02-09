@@ -1,13 +1,16 @@
 
 import { testData_1 } from './testdata'
-import { getIssues, organizeIssuesIntoRepos, sortReposByIssueCount, sortReposByStars } from './load'
+import {
+  handleData,
+  processHttpResponseData,
+  organizeIssuesIntoRepos,
+  sortReposByIssueCount,
+  sortReposByStars
+} from './load'
 
-describe('getIssues()', () => {
-
-  var testData = () => testData_1
-
+describe('processHttpResponseData()', () => {
   it('loads correct number of issues', () => {
-    const issues = getIssues(testData()).issues
+    const issues = processHttpResponseData(testData_1).issues
     expect(issues.length).toBe(6)
   });
 
@@ -19,9 +22,16 @@ describe('organizeIssuesIntoRepos()', () => {
   var testData = () => testData_1
 
   it('has correct number of repos', () => {
-    const issues = getIssues(testData()).issues
+    const issues = processHttpResponseData(testData()).issues
     const repos = organizeIssuesIntoRepos(issues)
     expect(repos.size).toBe(3)
+  });
+
+  it('issues have correct properties', () => {
+    const issues = processHttpResponseData(testData()).issues
+    const repos = organizeIssuesIntoRepos(issues)
+    const issue = repos.get('abonas/kubeclient').issues[0]
+    expect(issue.title).toBe("HTTP requests to arbitrary path")
   });
 
 })
@@ -29,7 +39,7 @@ describe('organizeIssuesIntoRepos()', () => {
 describe('sortReposByIssueCount()', () => {
 
   var testData = () => testData_1
-  const issues = () => getIssues(testData()).issues
+  const issues = () => processHttpResponseData(testData()).issues
 
   it('sorts in descending order by issues', () => {
     const repoMap = organizeIssuesIntoRepos(issues())
@@ -65,7 +75,7 @@ describe('sortReposByIssueCount()', () => {
 describe('sortReposByStars()', () => {
 
   var testData = () => testData_1
-  const issues = () => getIssues(testData()).issues
+  const issues = () => processHttpResponseData(testData()).issues
 
   it('sorts in descending order by stars', () => {
     // give default first repo in test data the lowest stars for testing

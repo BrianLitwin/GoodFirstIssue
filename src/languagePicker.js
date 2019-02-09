@@ -4,7 +4,6 @@ export function LanguagePicker(props) {
 
   function handleChange(e) {
     const language = e.target.options[e.target.selectedIndex].value
-    console.log(language)
     props.handleChange(language)
   }
 
