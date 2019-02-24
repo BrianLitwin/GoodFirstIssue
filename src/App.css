@@ -30,3 +30,28 @@
     transform: rotate(360deg);
   }
 }
+
+table {
+  table-layout: fixed;
+}
+
+thead th:nth-child(1) {
+  width: 55%;
+}
+
+thead th:nth-child(2) {
+  width: 20%;
+}
+
+thead th:nth-child(3) {
+  width: 15%;
+}
+
+thead th:nth-child(4) {
+  width: 15%;
+}
+
+th,
+td {
+  padding: 5px;
+}

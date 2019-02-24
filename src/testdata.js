@@ -22,10 +22,10 @@ export const testData_1 = {
               "totalCount": 214
             }
           },
-          "url": "https://github.com/abonas/kubeclient/issues/389" + "random1",
+          "url": "https://github.com/abonas/kubeclient/issues/389",
           "createdAt": "2019-01-23T10:49:21Z",
           "title": "HTTP requests to arbitrary path",
-          "number": 389
+          "number": 1
         }
       },
 
@@ -46,10 +46,10 @@ export const testData_1 = {
               "totalCount": 13
             }
           },
-          "url": "https://github.com/mrkn/iruby-rails/issues/4" + "random2",
+          "url": "https://github.com/mrkn/iruby-rails/issues/4",
           "createdAt": "2019-01-24T01:30:46Z",
           "title": "Add rake task like jupyter_on_rails gem",
-          "number": 4
+          "number": 1
         }
       },
 
@@ -70,10 +70,10 @@ export const testData_1 = {
               "totalCount": 13
             }
           },
-          "url": "https://github.com/mrkn/iruby-rails/issues/4" + "random3",
+          "url": "https://github.com/mrkn/iruby-rails/issues/4",
           "createdAt": "2019-01-24T01:30:46Z",
           "title": "Add rake task like jupyter_on_rails gem",
-          "number": 4
+          "number": 2
         }
       },
 
@@ -94,10 +94,10 @@ export const testData_1 = {
               "totalCount": 12
             }
           },
-          "url": "https://github.com/outcomesinsights/conceptql/issues/208" + "random4",
+          "url": "https://github.com/outcomesinsights/conceptql/issues/208",
           "createdAt": "2019-01-23T19:37:42Z",
           "title": "person.year_of_birth is set to 2000 value is missing",
-          "number": 208
+          "number": 1
         }
       },
 
@@ -118,10 +118,10 @@ export const testData_1 = {
               "totalCount": 12
             }
           },
-          "url": "https://github.com/dm-drogeriemarkt/foreman_wreckingball/issues/82" + "random5",
+          "url": "https://github.com/dm-drogeriemarkt/foreman_wreckingball/issues/82",
           "createdAt": "2019-01-24T10:42:30Z",
           "title": "improve UI for compute resource overview page",
-          "number": 82
+          "number": 2
         }
       },
 
@@ -136,16 +136,16 @@ export const testData_1 = {
               "login": "same"
             },
             "updatedAt": "2019-01-23T19:47:44Z",
-            "url": "https://github.com/outcomesinsights/conceptql" + "random6",
+            "url": "https://github.com/outcomesinsights/conceptql",
             "name": "same",
             "stargazers": {
               "totalCount": 12
             }
           },
-          "url": "https://github.com/dm-drogeriemarkt/foreman_wreckingball/issues/82" + "random6",
+          "url": "https://github.com/dm-drogeriemarkt/foreman_wreckingball/issues/82",
           "createdAt": "2019-01-24T10:42:30Z",
           "title": "improve UI for compute resource overview page",
-          "number": 82
+          "number": 3
         }
       }
     ],

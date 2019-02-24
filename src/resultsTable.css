@@ -1,9 +1,16 @@
-
 .hightlightHover:hover {
   color: #7057ff;
   cursor: pointer;
 }
 
+.rightAlign {
+  text-align: right;
+}
+
 th {
   text-align: left;
+}
+
+.repos {
+  width: 50%;
 }
