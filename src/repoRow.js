@@ -1,22 +1,14 @@
 import React from "react";
 import { formatDaysAgo } from "./util";
+import "./repoRow.css";
 
 export class RepoRow extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      expanded: false
-    };
-  }
-
   render() {
-    const { repo, children } = this.props;
-    const { expanded } = this.state;
-    var setExpanded = () => this.setState({ expanded: !expanded });
+    const { repo, children, expanded, setExpanded } = this.props;
 
     return (
       <React.Fragment>
-        <tr key={repo.title}>
+        <tr className="hightlightRow" key={repo.title}>
           <td>
             <button style={{ marginRight: "5px" }} onClick={setExpanded}>
               {expanded ? "\u2212" : "+"}

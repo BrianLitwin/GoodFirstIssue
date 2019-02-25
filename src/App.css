@@ -33,10 +33,12 @@
 
 table {
   table-layout: fixed;
+  border-spacing: 0;
+  border-collapse: collapse;
 }
 
 thead th:nth-child(1) {
-  width: 55%;
+  width: 40%;
 }
 
 thead th:nth-child(2) {
@@ -44,14 +46,15 @@ thead th:nth-child(2) {
 }
 
 thead th:nth-child(3) {
-  width: 15%;
+  width: 20%;
 }
 
 thead th:nth-child(4) {
-  width: 15%;
+  width: 20%;
 }
 
 th,
 td {
-  padding: 5px;
+  padding-bottom: 4px;
+  padding-top: 4px;
 }

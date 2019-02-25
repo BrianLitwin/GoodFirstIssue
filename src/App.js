@@ -15,22 +15,41 @@ class App extends React.Component {
     this.state = {
       language: "",
       loading: false,
-      data: [],
-      labels: ["good first issue", "help wanted"]
+      repositories: [],
+      labels: ["good first issue", "help wanted"],
+      loadingMessage: "Fetching Issues... ",
+      minGoodFirstIssues: 1,
+      minStars: 0
     };
   }
 
   render() {
-    const { data, language, loading, labels } = this.state;
+    const {
+      repositories,
+      language,
+      loading,
+      labels,
+      loadingMessage,
+      minGoodFirstIssues,
+      minStars
+    } = this.state;
 
-    var finishedLoading = data => {
+    const finishedLoading = data => {
       this.setState({
         loading: false,
-        data: organizeIssuesIntoRepos(data.issues)
+        repositories: organizeIssuesIntoRepos(data.issues),
+        loadingMessage: "Fetching Issues... "
       });
     };
 
-    var handleLanguageChange = language => {
+    const updateFetchMsg = n => {
+      if (n > 0) {
+        this.setState({ loadingMessage: loadingMessage + n });
+      }
+    };
+
+    const handleLanguageChange = language => {
+      console.log(labels);
       this.setState({
         language: language,
         loading: true
@@ -44,12 +63,29 @@ class App extends React.Component {
         cutoffDate,
         processHttpResponseData,
         fetchQuery,
-        finishedLoading
+        finishedLoading,
+        updateFetchMsg
       );
       fetchObject.fetch();
     };
 
-    var addLabel = label => this.setState({ labels: labels.concat(label) });
+    const addLabel = label => this.setState({ labels: labels.concat(label) });
+    const removelabel = n => {
+      labels.splice(n, 1);
+      this.setState({ labels });
+    };
+
+    const setMinGoodFirstIssues = n => this.setState({ minGoodFirstIssues: n });
+    const setMinStars = n => this.setState({ minStars: n });
+
+    // filtering for minGoodFirstIssues and minStars
+    const filteredRepositories = new Map();
+
+    repositories.forEach(r => {
+      if (r.stars >= minStars && r.issues.length >= minGoodFirstIssues) {
+        filteredRepositories.set(r.title, repositories.get(r.title));
+      }
+    });
 
     return (
       <div
@@ -63,11 +99,17 @@ class App extends React.Component {
           handleLanguageChange={handleLanguageChange}
           addLabel={addLabel}
           labels={labels}
+          removeLabel={removelabel}
+          setMinGoodFirstIssues={setMinGoodFirstIssues}
+          setMinStars={setMinStars}
         />
         {loading ? (
-          <LoadingSpinner />
+          <LoadingSpinner loadingMessage={loadingMessage} />
         ) : (
-          <ResultsTable data={data} finishedLoading={() => finishedLoading()} />
+          <ResultsTable
+            repositories={filteredRepositories}
+            finishedLoading={() => finishedLoading()}
+          />
         )}
       </div>
     );

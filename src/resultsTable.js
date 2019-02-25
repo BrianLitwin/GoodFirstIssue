@@ -8,36 +8,47 @@ export default class ResultsTable extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      sortBy: "issues"
+      sortBy: "issues",
+      expandedRows: Array(props.repositories.length).fill(false) // TODO: test this
     };
   }
 
   render() {
-    const { data } = this.props;
-    const { sortBy } = this.state;
+    const { repositories } = this.props;
+    const { sortBy, expandedRows } = this.state;
 
     let repos;
     switch (
       sortBy //TODO: if you set the sortBy state, the expansion state of the repo is off
     ) {
       case "issues":
-        repos = sortReposByIssueCount(data);
+        repos = sortReposByIssueCount(repositories);
         break;
       case "stars":
-        repos = sortReposByStars(data);
+        repos = sortReposByStars(repositories);
         break;
       default:
         throw Error("invalid sort parameter");
     }
 
-    var setSortBy = sortBy => this.setState({ sortBy: sortBy });
+    const setSortBy = sortBy => {
+      if (sortBy != this.state.sortBy) {
+        const expandedRows = Array(this.props.repositories.length).fill(false);
+        this.setState({ sortBy, expandedRows });
+      }
+    };
+    const setExpanded = i => {
+      const expandedRows = this.state.expandedRows.slice();
+      expandedRows[i] = !expandedRows[i];
+      this.setState({ expandedRows });
+    };
 
     function renderHeader() {
       function header() {
         return (
           <thead>
             <tr>
-              <th>Repository</th>
+              <th className="leftAlign">Repository</th>
               <th
                 className="rightAlign hightlightHover"
                 onClick={() => setSortBy("issues")}
@@ -61,8 +72,12 @@ export default class ResultsTable extends React.Component {
     function renderTableRows() {
       return (
         <React.Fragment>
-          {repos.map(repo => (
-            <RepoRow repo={repo}>
+          {repos.map((repo, i) => (
+            <RepoRow
+              repo={repo}
+              expanded={expandedRows[i]}
+              setExpanded={() => setExpanded(i)}
+            >
               {repo.issues.map(issue => {
                 return (
                   <IssueRow issue={issue} width={returnWidth(repo.issues[0])} />
@@ -84,7 +99,10 @@ export default class ResultsTable extends React.Component {
 }
 
 function returnWidth(issue) {
-  if (issue.number >= 1000) {
+  const n = issue.number;
+  if (n >= 10000) {
+    return 70;
+  } else if (n >= 1000) {
     return 60;
   } else if (issue.number >= 100) {
     return 50;

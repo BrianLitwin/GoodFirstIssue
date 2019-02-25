@@ -7,10 +7,6 @@
   text-align: right;
 }
 
-th {
+.leftAlign {
   text-align: left;
-}
-
-.repos {
-  width: 50%;
 }
