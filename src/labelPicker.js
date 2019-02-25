@@ -12,7 +12,7 @@ export class LabelPicker extends React.Component {
     } = this.props;
 
     return (
-      <div style={{ backgroundColor: "green", width: "40%" }} hidden={hidden}>
+      <div hidden={hidden}>
         <form onSubmit={handleSubmit}>
           <input
             className="label-input"
@@ -21,9 +21,15 @@ export class LabelPicker extends React.Component {
           />
           <button>Add</button>
         </form>
-        <ul style={{ listStyle: "none" }}>
+        <ul
+          style={{
+            listStyle: "none",
+            listStylePosition: "none",
+            margin: "0",
+            padding: "0"
+          }}
+        >
           {labels.map((label, i) => (
-            //TODO: work on this.. don't wrap in div
             <li>
               <button
                 style={{ marginRight: "8px" }}
@@ -31,9 +37,7 @@ export class LabelPicker extends React.Component {
               >
                 X
               </button>
-              <p style={{ display: "inline" }} key={label}>
-                {label}
-              </p>
+              {label}
             </li>
           ))}
         </ul>

@@ -49,24 +49,31 @@ class App extends React.Component {
     };
 
     const handleLanguageChange = language => {
-      console.log(labels);
-      this.setState({
-        language: language,
-        loading: true
-      });
-      const day = 24 * 60 * 60 * 1000;
-      const month = day * 30;
-      const cutoffDate = Date.now() - month * 3;
-      const fetchObject = beginFetch(
-        language,
-        labels,
-        cutoffDate,
-        processHttpResponseData,
-        fetchQuery,
-        finishedLoading,
-        updateFetchMsg
-      );
-      fetchObject.fetch();
+      if (language === "") {
+        this.setState({
+          language: "",
+          loading: false,
+          repositories: []
+        });
+      } else {
+        this.setState({
+          language: language,
+          loading: true
+        });
+        const day = 24 * 60 * 60 * 1000;
+        const month = day * 30;
+        const cutoffDate = Date.now() - month * 3;
+        const fetchObject = beginFetch(
+          language,
+          labels,
+          cutoffDate,
+          processHttpResponseData,
+          fetchQuery,
+          finishedLoading,
+          updateFetchMsg
+        );
+        fetchObject.fetch();
+      }
     };
 
     const addLabel = label => this.setState({ labels: labels.concat(label) });

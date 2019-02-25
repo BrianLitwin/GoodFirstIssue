@@ -26,34 +26,48 @@ export class OptionsDashboard extends React.Component {
     };
     const showLabelsPicker = () => this.setState({ hidden: !hidden });
 
-    return (
-      <div
-        style={{
-          display: "flex",
-          flexWrap: "wrap",
-          justifyContent: "space-between",
-          marginBottom: "10px"
-        }}
-      >
-        <LanguagePicker
-          handleChange={language => handleLanguageChange(language)}
-        />
-        <MinGoodFirstIssues handleChange={n => setMinGoodFirstIssues(n)} />
-        <MinStars handleChange={n => setMinStars(n)} />
-        <LabelPicker
-          labels={labels}
-          newLabel={label}
-          handleChange={handleNewLabelChange}
-          handleSubmit={handleNewLabelSubmit}
-          hidden={hidden}
-          removeLabel={removeLabel}
-        />
-        <div>
+    const firstRow = () => {
+      return (
+        <div
+          style={{
+            display: "flex",
+            flexWrap: "wrap",
+            justifyContent: "space-between",
+            marginBottom: "10px"
+          }}
+        >
+          <LanguagePicker
+            handleChange={language => handleLanguageChange(language)}
+          />
+          <MinGoodFirstIssues handleChange={n => setMinGoodFirstIssues(n)} />
+          <MinStars handleChange={n => setMinStars(n)} />
+        </div>
+      );
+    };
+
+    const secondRow = () => {
+      return (
+        <React.Fragment>
           <button style={{ width: "80px" }} onClick={showLabelsPicker}>
             {this.state.hidden ? "Add labels" : "Hide"}
           </button>
-        </div>
-      </div>
+          <LabelPicker
+            labels={labels}
+            newLabel={label}
+            handleChange={handleNewLabelChange}
+            handleSubmit={handleNewLabelSubmit}
+            hidden={hidden}
+            removeLabel={removeLabel}
+          />
+        </React.Fragment>
+      );
+    };
+
+    return (
+      <React.Fragment>
+        {firstRow()}
+        {secondRow()}
+      </React.Fragment>
     );
   }
 }
