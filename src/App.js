@@ -19,7 +19,8 @@ class App extends React.Component {
       labels: ["good first issue", "help wanted"],
       loadingMessage: "Fetching Issues... ",
       minGoodFirstIssues: 1,
-      minStars: 0
+      minStars: 0,
+      expandedTableRows: new Set()
     };
   }
 
@@ -31,14 +32,16 @@ class App extends React.Component {
       labels,
       loadingMessage,
       minGoodFirstIssues,
-      minStars
+      minStars,
+      expandedTableRows
     } = this.state;
 
     const finishedLoading = data => {
       this.setState({
         loading: false,
         repositories: organizeIssuesIntoRepos(data.issues),
-        loadingMessage: "Fetching Issues... "
+        loadingMessage: "Fetching Issues... ",
+        expandedTableRows: new Set()
       });
     };
 
@@ -82,8 +85,20 @@ class App extends React.Component {
       this.setState({ labels });
     };
 
-    const setMinGoodFirstIssues = n => this.setState({ minGoodFirstIssues: n });
-    const setMinStars = n => this.setState({ minStars: n });
+    const setMinGoodFirstIssues = n =>
+      this.setState({ minGoodFirstIssues: n, expandedTableRows: new Set() });
+    const setMinStars = n =>
+      this.setState({ minStars: n, expandedTableRows: new Set() });
+
+    const setExpandedTableRows = i => {
+      const expandedTableRows = this.state.expandedTableRows;
+      if (expandedTableRows.has(i)) {
+        expandedTableRows.delete(i);
+      } else {
+        expandedTableRows.add(i);
+      }
+      this.setState(expandedTableRows);
+    };
 
     // filtering for minGoodFirstIssues and minStars
     const filteredRepositories = new Map();
@@ -116,6 +131,8 @@ class App extends React.Component {
           <ResultsTable
             repositories={filteredRepositories}
             finishedLoading={() => finishedLoading()}
+            setExpanded={setExpandedTableRows}
+            expandedRows={expandedTableRows}
           />
         )}
       </div>

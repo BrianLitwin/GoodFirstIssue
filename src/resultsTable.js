@@ -8,14 +8,13 @@ export default class ResultsTable extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      sortBy: "issues",
-      expandedRows: Array(props.repositories.length).fill(false) // TODO: test this
+      sortBy: "issues"
     };
   }
 
   render() {
-    const { repositories } = this.props;
-    const { sortBy, expandedRows } = this.state;
+    const { repositories, setExpanded, expandedRows } = this.props;
+    const { sortBy } = this.state;
 
     let repos;
     switch (
@@ -33,14 +32,8 @@ export default class ResultsTable extends React.Component {
 
     const setSortBy = sortBy => {
       if (sortBy != this.state.sortBy) {
-        const expandedRows = Array(this.props.repositories.length).fill(false);
         this.setState({ sortBy, expandedRows });
       }
-    };
-    const setExpanded = i => {
-      const expandedRows = this.state.expandedRows.slice();
-      expandedRows[i] = !expandedRows[i];
-      this.setState({ expandedRows });
     };
 
     function renderHeader() {
@@ -75,7 +68,7 @@ export default class ResultsTable extends React.Component {
           {repos.map((repo, i) => (
             <RepoRow
               repo={repo}
-              expanded={expandedRows[i]}
+              expanded={expandedRows.has(i)}
               setExpanded={() => setExpanded(i)}
             >
               {repo.issues.map(issue => {

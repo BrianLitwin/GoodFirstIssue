@@ -33,7 +33,8 @@ export class OptionsDashboard extends React.Component {
             display: "flex",
             flexWrap: "wrap",
             justifyContent: "space-between",
-            marginBottom: "10px"
+            marginBottom: "10px",
+            marginTop: "25px"
           }}
         >
           <LanguagePicker
@@ -47,7 +48,7 @@ export class OptionsDashboard extends React.Component {
 
     const secondRow = () => {
       return (
-        <React.Fragment>
+        <div style={{ marginBottom: "15px" }}>
           <button style={{ width: "80px" }} onClick={showLabelsPicker}>
             {this.state.hidden ? "Add labels" : "Hide"}
           </button>
@@ -59,7 +60,7 @@ export class OptionsDashboard extends React.Component {
             hidden={hidden}
             removeLabel={removeLabel}
           />
-        </React.Fragment>
+        </div>
       );
     };
 
