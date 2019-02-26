@@ -16,5 +16,5 @@ If you're looking for places to contribute, check out [issues labeled "good firs
 
 Check out [Sourcecre'd contributing guide][scg] for some thoughts on how to write great commits. 
 
-[gfi]: 
+[gfi]: https://github.com/BrianLitwin/GoodFirstIssue-Dev/issues?q=is%3Aissue+is%3Aopen+label%3A%22good+first+issue%22
 [scg]: https://github.com/sourcecred/sourcecred/blob/master/CHANGELOG.md
