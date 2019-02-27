@@ -18,7 +18,9 @@ export class RepoRow extends React.Component {
             </a>
           </td>
           <td className="rightAlign">{repo.issues.length}</td>
-          <td className="rightAlign">{repo.stars}</td>
+          <td className="rightAlign">
+            {repo.stars} {starSvg()}
+          </td>
           <td className="rightAlign">
             {formatDaysAgo(repo.lastUpdate, Date.now())}
           </td>
@@ -33,38 +35,19 @@ export class RepoRow extends React.Component {
 
 function starSvg() {
   return (
-    <span>
-      <svg
-        aria-label="star"
-        viewBox="0 0 14 16"
-        version="1.1"
-        width="14"
-        height="16"
-        role="img"
-      >
-        <path
-          fillRule="evenodd"
-          d="M14 6l-4.9-.64L7 1 4.9 5.36 0 6l3.6 3.26L2.67 14 7 11.67 11.33 14l-.93-4.74L14 6z"
-        />
-      </svg>
-    </span>
+    <svg
+      aria-label="star"
+      style={{ marginBottom: "-6px" }}
+      viewBox="0 0 15 20"
+      version="1.1"
+      width="15"
+      height="20"
+      role="img"
+    >
+      <path
+        fillRule="evenodd"
+        d="M14 6l-4.9-.64L7 1 4.9 5.36 0 6l3.6 3.26L2.67 14 7 11.67 11.33 14l-.93-4.74L14 6z"
+      />
+    </svg>
   );
 }
-
-/*
-return <span><svg style={{
-ariaLabel:"star"
-viewBox:"0 0 14 16",
-version:"1.1",
-width:"14",
-height:"16",
-role:"img"
-}}>
-<path style={{
-fillRule:"evenodd",
-d:"M14 6l-4.9-.64L7 1 4.9 5.36 0 6l3.6 3.26L2.67 14 7 11.67 11.33 14l-.93-4.74L14 6z"
-}}>
-</path>
-</svg>
-</span>
-*/
