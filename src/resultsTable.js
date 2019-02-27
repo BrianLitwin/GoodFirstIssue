@@ -83,7 +83,7 @@ export default class ResultsTable extends React.Component {
     }
     //TODO: Show table headers when loading
     return (
-      <table style={{ width: "100%" }}>
+      <table style={{ width: "100%", marginBottom: "50px" }}>
         {renderHeader()}
         <tbody>{renderTableRows()}</tbody>
       </table>
