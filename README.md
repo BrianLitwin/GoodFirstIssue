@@ -1,4 +1,6 @@
-# GoodFirstIssue-Dev
+# GoodFirstIssue
+
+Check out the prototype: www.goodfirstissue.com
 
 The goal of this site is to provide a place where OS contributors, particularly beginners, can quickly find a bunch of projects that are welcoming to new contributors and contributions. Currently we do this by fetching repos with issues marked "good first issue" and/or "help wanted" (and/or user defined labels). 
 
