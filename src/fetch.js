@@ -1,9 +1,9 @@
 export function beginFetch(
   language,
   labels,
-  cuffoffDate,
+  cutoffDate,
   processHttpResponseData,
-  fetchRequest,
+  fetchQuery,
   completionHandler,
   updateFetchMsg
 ) {
@@ -13,26 +13,27 @@ export function beginFetch(
     index: 0,
     issues: [],
     endCursor: undefined,
-    cuffoffDate: cuffoffDate,
+    cutoffDate: cutoffDate,
 
     fetchCompletion: function(httpResponseData) {
       const data = processHttpResponseData(httpResponseData);
-      updateFetchMsg(this.issues.length);
 
       var fetchNewLabel = () => {
         this.index += 1; // test 'index gets incremented '
         this.endCursor = undefined; // test 'endCursor is reset to undefined after new label'
         this.fetch(); // continue fetching, new label
       };
-
       // test: if data.issues is empty
       if (data.issues.length === 0) {
         fetchNewLabel();
       } else {
         sortByDate(data.issues); // test 'new issues are sorted'
-        this.issues = this.issues.concat(data.issues); // test 'new issues are added' (and sorted)
 
-        if (this.issues[this.issues.length - 1].date < cuffoffDate) {
+        // this may be quadratic
+        this.issues = this.issues.concat(data.issues); // test 'new issues are added' (and sorted)
+        updateFetchMsg(this.issues.length);
+
+        if (this.issues[this.issues.length - 1].date < cutoffDate) {
           // test 'last label cuffoffDate is adhered to'
           fetchNewLabel();
         } else {
@@ -45,11 +46,15 @@ export function beginFetch(
     fetch: function() {
       if (this.index >= this.labels.length) {
         // test 'fetch terminates after last label is completed'
+        console.log(this.issues.length);
+        this.issues = this.issues.filter(iss => iss.updatedAt > cutoffDate);
+        console.log(this.issues.length);
         completionHandler(this);
       } else {
-        fetchRequest(
+        fetchQuery(
           this.language,
           this.labels[this.index],
+          this.cutoffDate,
           this.endCursor,
           httpResponseData => this.fetchCompletion(httpResponseData)
         );

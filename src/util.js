@@ -17,9 +17,23 @@ export function formatDaysAgo(stringDate, todaysDate) {
 }
 
 export function formatDate(date) {
-  return `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`;
+  function addZero(d) {
+    return d < 10 ? "0" + d : d;
+  }
+
+  const day = addZero(date.getDate());
+  const month = addZero(date.getMonth() + 1);
+  var year = date.getFullYear();
+  return year + "-" + month + "-" + day;
 }
 
 export function today() {
   return formatDate(new Date());
+}
+
+export function initMinDate() {
+  const threeMonths = 1000 * 60 * 60 * 24 * 180;
+  const today = new Date().getTime();
+  const threeMonthsAgo = today - threeMonths;
+  return formatDate(new Date(threeMonthsAgo));
 }

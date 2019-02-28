@@ -8,7 +8,7 @@ import { OptionsDashboard } from "./optionsDashboard";
 import { fetchQuery } from "./query";
 import { testData_1 } from "./testdata";
 import { beginFetch } from "./fetch";
-import { initMinDate } from "./selectDate";
+import { initMinDate } from "./util";
 
 class App extends React.Component {
   constructor(props) {

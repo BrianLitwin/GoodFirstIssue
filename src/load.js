@@ -40,7 +40,7 @@ export function processHttpResponseData(data) {
 // do this here so that we can examine against cutoff date - // TODO: test this
 export function setDates(issues) {
   issues.forEach(issue => {
-    issue.date = new Date(issue.createdAt).getTime();
+    issue.date = new Date(issue.updatedAt).getTime();
   });
 }
 
@@ -107,7 +107,7 @@ function makeOrUpdateRepo(issue, repositories) {
 
 function formatIssue(issue) {
   const url = issue.url;
-  const createdAt = issue.createdAt;
+  const updatedAt = issue.updatedAt;
   const title = issue.title;
   const number = issue.number;
   const date = issue.date;
@@ -115,7 +115,7 @@ function formatIssue(issue) {
     title,
     number,
     url,
-    createdAt,
+    updatedAt,
     date
   };
 }
