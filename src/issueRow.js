@@ -1,5 +1,6 @@
 import React from "react";
 import "./issueRow.css";
+import { formatDate } from "./util";
 
 export class IssueRow extends React.Component {
   render() {
@@ -16,8 +17,13 @@ export class IssueRow extends React.Component {
             #{issue.number}
           </a>
           <label>{issue.title}</label>
+          <span style={{ color: "gray" }}>{formatIssueDate(issue)}</span>
         </td>
       </tr>
     );
   }
+}
+
+function formatIssueDate(issue) {
+  return " " + formatDate(new Date(issue.date));
 }

@@ -1,4 +1,25 @@
 import React from "react";
+import { today } from "./util";
+
+export function DateSelect(props) {
+  return (
+    <form>
+      <label style={{ marginRight: "5px" }}>Max Date</label>
+      <input
+        type="date"
+        id="start"
+        name="trip-start"
+        value={today()}
+        min="2018-01-01"
+        max="2018-12-31"
+      />
+    </form>
+  );
+}
+
+/*
+ * Base class used to build selects
+ */
 
 function SelectForm(props) {
   function handleChange(e) {

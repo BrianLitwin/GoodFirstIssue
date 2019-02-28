@@ -71,11 +71,16 @@ export default class ResultsTable extends React.Component {
               expanded={expandedRows.has(i)}
               setExpanded={() => setExpanded(i)}
             >
-              {repo.issues.map(issue => {
-                return (
-                  <IssueRow issue={issue} width={returnWidth(repo.issues[0])} />
-                );
-              })}
+              {repo.issues
+                .sort((i, j) => j.number - i.number) // perhaps not the best place to do this
+                .map(issue => {
+                  return (
+                    <IssueRow
+                      issue={issue}
+                      width={returnWidth(repo.issues[0])}
+                    />
+                  );
+                })}
             </RepoRow>
           ))}
         </React.Fragment>

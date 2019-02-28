@@ -8,6 +8,7 @@ import { OptionsDashboard } from "./optionsDashboard";
 import { fetchQuery } from "./query";
 import { testData_1 } from "./testdata";
 import { beginFetch } from "./fetch";
+import { initMinDate } from "./selectDate";
 
 class App extends React.Component {
   constructor(props) {
@@ -20,6 +21,7 @@ class App extends React.Component {
       loadingMessage: "Fetching Issues... ",
       minGoodFirstIssues: 1,
       minStars: 0,
+      minDate: initMinDate(),
       expandedTableRows: new Set()
     };
   }
@@ -33,7 +35,8 @@ class App extends React.Component {
       loadingMessage,
       minGoodFirstIssues,
       minStars,
-      expandedTableRows
+      expandedTableRows,
+      minDate
     } = this.state;
 
     const finishedLoading = data => {
@@ -69,7 +72,7 @@ class App extends React.Component {
         const fetchObject = beginFetch(
           language,
           labels,
-          cutoffDate,
+          minDate,
           processHttpResponseData,
           fetchQuery,
           finishedLoading,
@@ -100,6 +103,8 @@ class App extends React.Component {
       this.setState(expandedTableRows);
     };
 
+    const setMinDate = e => this.setState({ minDate: e.target.value });
+
     // filtering for minGoodFirstIssues and minStars
     const filteredRepositories = new Map();
 
@@ -124,6 +129,8 @@ class App extends React.Component {
           removeLabel={removelabel}
           setMinGoodFirstIssues={setMinGoodFirstIssues}
           setMinStars={setMinStars}
+          minDate={minDate}
+          setMinDate={setMinDate}
         />
         {loading ? (
           <LoadingSpinner loadingMessage={loadingMessage} />

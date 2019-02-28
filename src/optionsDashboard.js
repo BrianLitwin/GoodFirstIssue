@@ -1,6 +1,7 @@
 import React from "react";
 import { LanguagePicker, MinStars, MinGoodFirstIssues } from "./formSelect";
 import { LabelPicker } from "./labelPicker";
+import { SelectDate } from "./selectDate.js";
 
 export class OptionsDashboard extends React.Component {
   constructor(props) {
@@ -14,7 +15,9 @@ export class OptionsDashboard extends React.Component {
       handleLanguageChange,
       removeLabel,
       setMinGoodFirstIssues,
-      setMinStars
+      setMinStars,
+      minDate,
+      setMinDate
     } = this.props;
     const { label, hidden } = this.state;
 
@@ -42,6 +45,7 @@ export class OptionsDashboard extends React.Component {
           />
           <MinGoodFirstIssues handleChange={n => setMinGoodFirstIssues(n)} />
           <MinStars handleChange={n => setMinStars(n)} />
+          <SelectDate value={minDate} setDate={setMinDate} />
         </div>
       );
     };

@@ -37,7 +37,7 @@ function starSvg() {
   return (
     <svg
       aria-label="star"
-      style={{ marginBottom: "-6px" }}
+      style={{ marginBottom: "-6px", marginRight: "-3px" }}
       viewBox="0 0 15 20"
       version="1.1"
       width="15"
