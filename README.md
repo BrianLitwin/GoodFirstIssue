@@ -2,7 +2,7 @@
 
 Check out the prototype: www.goodfirstissue.com
 
-The goal of the site is to provide beginner/intermediate OS contributors with a bunch of ideas for projects to contribute to, as well as gain a sense of the OS landscape for new contributors in their particular language. Currently we accomplish this by fetching repos with issues marked "good first issue" and/or "help wanted". Users can also add their own labels to the list of labels fetched. 
+The goal of the site is to provide beginner/intermediate OS contributors with a bunch of ideas for projects to contribute to, as well as gain a sense of the OS landscape for new contributors in their particular language. Currently we accomplish this by fetching issues marked "good first issue" and/or "help wanted" and reformatting them into a ranked list of repos. Users can also add their own labels to the list of labels fetched. 
 
 # Current Status 
 
