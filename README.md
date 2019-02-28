@@ -2,13 +2,13 @@
 
 Check out the prototype: www.goodfirstissue.com
 
-The goal of this site is to provide a place where OS contributors, particularly beginners, can quickly find a bunch of projects that are welcoming to new contributors and contributions. Currently we do this by fetching repos with issues marked "good first issue" and/or "help wanted" (and/or user defined labels). 
+The goal of the site is to provide beginner/intermediate OS contributors with a bunch of ideas for projects to contribute to, as well as gain a sense of the OS landscape for new contributors in their particular language. Currently we accomplish this by fetching repos with issues marked "good first issue" and/or "help wanted". Users can also add their own labels to the list of labels fetched. 
 
 # Current Status 
 
-The website is currently functional and presentable. 
+The website is currently functional and presentable with lots of room to grow. 
 
-We're using React.js and Jest/Enzyme for testing. 
+The site uses React.js and Jest/Enzyme for testing. 
 
 # Contributing 
 
