@@ -61,9 +61,11 @@ function makeRepo(issue) {
   const title = repoTitle(issue);
   const stars = repo.stargazers.totalCount;
   const lastUpdate = repo.updatedAt;
+  const description = repo.description;
   const url = repo.url;
   const issues = [formatIssue(issue)];
   const issueMap = new Set();
+  console.log(description);
 
   issueMap.add(issues[0].number); // TODO: Test this- duplicate issues
 
@@ -71,6 +73,7 @@ function makeRepo(issue) {
     title,
     stars,
     lastUpdate,
+    description,
     url,
     issues,
     issueMap,

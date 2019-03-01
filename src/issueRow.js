@@ -4,11 +4,11 @@ import { formatDate } from "./util";
 
 export class IssueRow extends React.Component {
   render() {
-    const { issue, width } = this.props;
+    const { issue, width, indentStyle } = this.props;
 
     return (
-      <tr className="hightlightRow">
-        <td colSpan="4" style={{ paddingLeft: 30 }}>
+      <tr className="hightlightRow issueRow">
+        <td colSpan="4" style={indentStyle}>
           <a
             href={issue.url}
             target="blank"
@@ -31,7 +31,6 @@ function IssueLabel(bgc, txt) {
   const backgroundColor = `#${bgc}`;
   const style = {
     marginLeft: "6px",
-    height: "20px",
     padding: "0.15em 6px",
     fontSize: "14px",
     fontweight: "600",

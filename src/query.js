@@ -47,6 +47,7 @@ query SearchIssues($query:String!, $after: String) {
 	              url,
 	              updatedAt,
                 name,
+                description, 
 	              stargazers {
 		            totalCount
          	    },

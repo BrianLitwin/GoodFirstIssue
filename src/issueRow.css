@@ -5,3 +5,7 @@
 .hightlightRow:focus-within {
   background-color: #d8e1e8;
 }
+
+.issueRow {
+  line-height: 20px;
+}
