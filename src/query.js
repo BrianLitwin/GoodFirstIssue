@@ -54,11 +54,11 @@ query SearchIssues($query:String!, $after: String) {
           url,
 	        updatedAt,
           title,
-          number, 
-	labels(first:50) {
+          number,
+	        labels(first:100) {
             edges {
               node {
-                color, 
+                color,
                 name
               }
             }

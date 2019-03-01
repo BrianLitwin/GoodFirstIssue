@@ -111,11 +111,13 @@ function formatIssue(issue) {
   const title = issue.title;
   const number = issue.number;
   const date = issue.date;
+  const labels = issue.labels.edges.map(e => e.node);
   return {
     title,
     number,
     url,
     updatedAt,
-    date
+    date,
+    labels
   };
 }
