@@ -9,15 +9,19 @@ export class IssueRow extends React.Component {
     return (
       <tr className="hightlightRow">
         <td colSpan="4" style={{ paddingLeft: 30 }}>
-          <a
-            href={issue.url}
-            target="blank"
-            style={{ display: "inline-block", width: `${width}px` }}
-          >
-            #{issue.number}
-          </a>
-          <label>{issue.title}</label>
-          <span style={{ color: "gray" }}>{formatIssueDate(issue)}</span>
+          <div>
+            <a
+              href={issue.url}
+              target="blank"
+              style={{ display: "inline-block", minWidth: `${width}px` }}
+            >
+              #{issue.number}
+            </a>
+            <div>
+              <label>{issue.title}</label>
+              <span style={{ color: "gray" }}>{formatIssueDate(issue)}</span>
+            </div>
+          </div>
         </td>
       </tr>
     );
