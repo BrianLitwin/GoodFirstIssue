@@ -10,7 +10,7 @@ export class RepoRow extends React.Component {
       <React.Fragment>
         <tr className="hightlightRow" key={repo.title}>
           <td>
-            <button style={{ marginRight: "5px" }} onClick={setExpanded}>
+            <button style={{ marginRight: "5px",float:"left" }} onClick={setExpanded}>
               {expanded ? "\u2212" : "+"}
             </button>
             <a href={repo.url} target="blank">

@@ -6,6 +6,6 @@
   background-color: #d8e1e8;
 }
 
-.issueRow {
-  line-height: 20px;
+.hightlightRow div:first-child {
+  display: flex;
 }

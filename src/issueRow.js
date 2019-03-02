@@ -7,20 +7,22 @@ export class IssueRow extends React.Component {
     const { issue, width, indentStyle } = this.props;
 
     return (
-      <tr className="hightlightRow issueRow">
-        <td colSpan="4" style={indentStyle}>
-          <a
-            href={issue.url}
-            target="blank"
-            style={{ display: "inline-block", width: `${width}px` }}
-          >
-            #{issue.number}
-          </a>
-          <label>{issue.title} </label>
-          <span style={{ color: "gray", display: "inline-block" }}>
-            {formatIssueDate(issue)}
-          </span>
-          {issue.labels.map(label => IssueLabel(label.color, label.name))}
+      <tr className="hightlightRow">
+        <td colSpan="4" style={{ paddingLeft: 30 }}>
+          <div>
+            <a
+              href={issue.url}
+              target="blank"
+              style={{ display: "inline-block", minWidth: `${width}px` }}
+            >
+              #{issue.number}
+            </a>
+            <div>
+              <label>{issue.title}</label>
+              <span style={{ color: "gray" }}>{formatIssueDate(issue)}</span>
+              {issue.labels.map(label => IssueLabel(label.color, label.name))}
+            </div>
+          </div>
         </td>
       </tr>
     );
