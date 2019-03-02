@@ -25,6 +25,7 @@ export class RepoRow extends React.Component {
             {formatDaysAgo(repo.lastUpdate, Date.now())}
           </td>
         </tr>
+        <tr />
         {expanded && children}
       </React.Fragment>
     );

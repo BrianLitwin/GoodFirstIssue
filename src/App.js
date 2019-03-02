@@ -94,7 +94,6 @@ class App extends React.Component {
       this.setState({ minStars: n, expandedTableRows: new Set() });
 
     const setExpandedTableRows = i => {
-      const expandedTableRows = this.state.expandedTableRows;
       if (expandedTableRows.has(i)) {
         expandedTableRows.delete(i);
       } else {

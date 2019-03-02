@@ -55,6 +55,5 @@ thead th:nth-child(4) {
 
 th,
 td {
-  padding-bottom: 4px;
-  padding-top: 4px;
+  line-height: 1.5em;
 }

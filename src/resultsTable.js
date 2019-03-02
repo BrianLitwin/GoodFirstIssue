@@ -63,6 +63,7 @@ export default class ResultsTable extends React.Component {
     }
 
     function renderTableRows() {
+      const indentStyle = { paddingLeft: 30 };
       return (
         <React.Fragment>
           {repos.map((repo, i) => (
@@ -71,13 +72,19 @@ export default class ResultsTable extends React.Component {
               expanded={expandedRows.has(i)}
               setExpanded={() => setExpanded(i)}
             >
+              <tr>
+                <td colSpan="4" style={indentStyle}>
+                  {repo.description}
+                </td>
+              </tr>
               {repo.issues
                 .sort((i, j) => j.number - i.number) // perhaps not the best place to do this
                 .map(issue => {
                   return (
                     <IssueRow
                       issue={issue}
-                      width={returnWidth(repo.issues[0])}
+                      width={calcWidth(repo.issues[0])}
+                      indentStyle={indentStyle}
                     />
                   );
                 })}
@@ -96,7 +103,7 @@ export default class ResultsTable extends React.Component {
   }
 }
 
-function returnWidth(issue) {
+function calcWidth(issue) {
   const n = issue.number;
   if (n >= 10000) {
     return 70;

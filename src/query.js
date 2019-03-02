@@ -47,6 +47,7 @@ query SearchIssues($query:String!, $after: String) {
 	              url,
 	              updatedAt,
                 name,
+                description, 
 	              stargazers {
 		            totalCount
          	    },
@@ -54,7 +55,15 @@ query SearchIssues($query:String!, $after: String) {
           url,
 	        updatedAt,
           title,
-          number
+          number,
+	        labels(first:100) {
+            edges {
+              node {
+                color,
+                name
+              }
+            }
+          }
         }
       }
     }
