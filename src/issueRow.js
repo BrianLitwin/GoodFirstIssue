@@ -4,19 +4,29 @@ import { formatDate } from "./util";
 
 export class IssueRow extends React.Component {
   render() {
-    const { issue, width, indentStyle } = this.props;
+    const { issue, width } = this.props;
 
     return (
       <tr className="hightlightRow issueRow">
-        <td colSpan="4" style={indentStyle}>
+        <td colspan="4">
           <a
             href={issue.url}
             target="blank"
-            style={{ display: "inline-block", width: `${width}px` }}
+            style={{
+              display: "inline-block",
+              marginLeft: "30px"
+            }}
           >
             #{issue.number}
           </a>
-          <label>{issue.title} </label>
+          <label
+            style={{
+              marginLeft: "60px",
+              position: "relative"
+            }}
+          >
+            {issue.title}{" "}
+          </label>
           <span style={{ color: "gray", display: "inline-block" }}>
             {formatIssueDate(issue)}
           </span>

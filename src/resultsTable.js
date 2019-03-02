@@ -63,7 +63,6 @@ export default class ResultsTable extends React.Component {
     }
 
     function renderTableRows() {
-      const indentStyle = { paddingLeft: 30 };
       return (
         <React.Fragment>
           {repos.map((repo, i) => (
@@ -73,7 +72,7 @@ export default class ResultsTable extends React.Component {
               setExpanded={() => setExpanded(i)}
             >
               <tr>
-                <td colSpan="4" style={indentStyle}>
+                <td colSpan="4" style={{ paddingLeft: 30 }}>
                   {repo.description}
                 </td>
               </tr>
@@ -81,11 +80,7 @@ export default class ResultsTable extends React.Component {
                 .sort((i, j) => j.number - i.number) // perhaps not the best place to do this
                 .map(issue => {
                   return (
-                    <IssueRow
-                      issue={issue}
-                      width={calcWidth(repo.issues[0])}
-                      indentStyle={indentStyle}
-                    />
+                    <IssueRow issue={issue} width={calcWidth(repo.issues[0])} />
                   );
                 })}
             </RepoRow>

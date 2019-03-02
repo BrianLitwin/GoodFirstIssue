@@ -9,7 +9,7 @@ export class RepoRow extends React.Component {
     return (
       <React.Fragment>
         <tr className="hightlightRow" key={repo.title}>
-          <td>
+          <td style={{ float: "left" }}>
             <button style={{ marginRight: "5px" }} onClick={setExpanded}>
               {expanded ? "\u2212" : "+"}
             </button>
