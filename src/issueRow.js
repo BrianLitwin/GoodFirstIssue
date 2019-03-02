@@ -7,6 +7,7 @@ export class IssueRow extends React.Component {
     const { issue, width } = this.props;
 
     return (
+<<<<<<< HEAD
       <tr className="hightlightRow issueRow">
         <td colspan="4">
           <a
@@ -31,6 +32,24 @@ export class IssueRow extends React.Component {
             {formatIssueDate(issue)}
           </span>
           {issue.labels.map(label => IssueLabel(label.color, label.name))}
+=======
+      <tr className="hightlightRow">
+        <td colSpan="4" style={{ paddingLeft: 30 }}>
+          <div>
+            <a
+              href={issue.url}
+              target="blank"
+              style={{ display: "inline-block", minWidth: `${width}px` }}
+            >
+              #{issue.number}
+            </a>
+            <div>
+              <label>{issue.title}</label>
+              <span style={{ color: "gray" }}>{formatIssueDate(issue)}</span>
+              {issue.labels.map(label => IssueLabel(label.color, label.name))}
+            </div>
+          </div>
+>>>>>>> ffd3caabe2b142f6d1e8a13d210945eed7b67ff4
         </td>
       </tr>
     );
