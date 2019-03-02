@@ -9,9 +9,12 @@ export class RepoRow extends React.Component {
     return (
       <React.Fragment>
         <tr className="hightlightRow" key={repo.title}>
-          <td>
+          <td style={{ display: "flex", alignItems: "flex-start" }}>
             <button
-              style={{ marginRight: "5px", float: "left" }}
+              style={{
+                marginRight: "5px",
+                marginTop: "4px" //kind of a hack
+              }}
               onClick={setExpanded}
             >
               {expanded ? "\u2212" : "+"}
@@ -28,7 +31,6 @@ export class RepoRow extends React.Component {
             {formatDaysAgo(repo.lastUpdate, Date.now())}
           </td>
         </tr>
-        <tr />
         {expanded && children}
       </React.Fragment>
     );
