@@ -43,7 +43,7 @@ function IssueLabel(bgc, txt) {
     color: textOverlay(backgroundColor),
     backgroundColor
   };
-  return <label style={style}>{txt}</label>;
+  return <label key={txt} style={style}>{txt}</label>;
 }
 
 function formatIssueDate(issue) {
