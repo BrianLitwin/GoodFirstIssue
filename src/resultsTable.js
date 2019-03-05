@@ -67,6 +67,7 @@ export default class ResultsTable extends React.Component {
         <React.Fragment>
           {repos.map((repo, i) => (
             <RepoRow
+              key={repo.title}
               repo={repo}
               expanded={expandedRows.has(i)}
               setExpanded={() => setExpanded(i)}
@@ -80,7 +81,7 @@ export default class ResultsTable extends React.Component {
                 .sort((i, j) => j.number - i.number) // perhaps not the best place to do this
                 .map(issue => {
                   return (
-                    <IssueRow issue={issue} width={calcWidth(repo.issues[0])} />
+                    <IssueRow key={issue.number} issue={issue} width={calcWidth(repo.issues[0])} />
                   );
                 })}
             </RepoRow>
