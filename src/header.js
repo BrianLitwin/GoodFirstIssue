@@ -9,7 +9,7 @@ export function Header() {
       <p>
         Discover Issues and Repositories with
         <label className="IssueLabel GoodFirstIssue">
-          good girst issue
+          good first issue
         </label>{" "}
         and
         <label className="IssueLabel HelpWanted">help wanted</label> labels.
