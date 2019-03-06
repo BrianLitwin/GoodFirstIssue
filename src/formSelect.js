@@ -36,7 +36,7 @@ function SelectForm(props) {
         )}
         <select onChange={handleChange}>
           {props.options.map(option => (
-            <option value={option.value}>{option.html}</option>
+            <option key={option.value} value={option.value}>{option.html}</option>
           ))}
         </select>
       </form>
