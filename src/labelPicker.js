@@ -30,7 +30,7 @@ export class LabelPicker extends React.Component {
           }}
         >
           {labels.map((label, i) => (
-            <li>
+            <li key={label}>
               <button
                 style={{ marginRight: "8px" }}
                 onClick={() => removeLabel(i)}
