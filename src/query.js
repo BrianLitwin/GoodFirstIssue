@@ -28,6 +28,7 @@ export function fetchQuery(language, label, updated, endCursor, onCompletion) {
   })
     .then(r => r.json())
     .then(data => {
+      console.log(data);
       onCompletion(data);
     });
 }
@@ -47,7 +48,7 @@ query SearchIssues($query:String!, $after: String) {
 	              url,
 	              updatedAt,
                 name,
-                description, 
+                description,
 	              stargazers {
 		            totalCount
          	    },

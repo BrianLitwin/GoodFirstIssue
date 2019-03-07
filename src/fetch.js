@@ -1,3 +1,5 @@
+// make these pure functions
+
 export function beginFetch(
   language,
   labels,
@@ -17,38 +19,20 @@ export function beginFetch(
 
     fetchCompletion: function(httpResponseData) {
       const data = processHttpResponseData(httpResponseData);
-
-      var fetchNewLabel = () => {
-        this.index += 1; // test 'index gets incremented '
-        this.endCursor = undefined; // test 'endCursor is reset to undefined after new label'
-        this.fetch(); // continue fetching, new label
-      };
-      // test: if data.issues is empty
-      if (data.issues.length === 0) {
-        fetchNewLabel();
-      } else {
-        sortByDate(data.issues); // test 'new issues are sorted'
-
-        // this may be quadratic
-        this.issues = this.issues.concat(data.issues); // test 'new issues are added' (and sorted)
-        updateFetchMsg(this.issues.length);
-
-        if (this.issues[this.issues.length - 1].date < cutoffDate) {
-          // test 'last label cuffoffDate is adhered to'
-          fetchNewLabel();
-        } else {
-          this.endCursor = data.endCursor; // test 'endCursor is set to recieved endCursor'
-          this.fetch();
-        }
+      this.issues = this.issues.concat(data.issues); // test 'new issues are added' (and sorted)
+      this.endCursor = data.endCursor;
+      updateFetchMsg(this.issues.length);
+      console.log(data.hasNextPage);
+      if (!data.hasNextPage) {
+        this.index += 1; // fetch new label
+        this.endCursor = undefined;
       }
+      this.fetch();
     },
 
     fetch: function() {
       if (this.index >= this.labels.length) {
-        // test 'fetch terminates after last label is completed'
-        console.log(this.issues.length);
         this.issues = this.issues.filter(iss => iss.updatedAt > cutoffDate);
-        console.log(this.issues.length);
         completionHandler(this);
       } else {
         fetchQuery(

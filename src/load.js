@@ -31,10 +31,10 @@ export function processHttpResponseData(data) {
   const issues = data.data.search.edges.map(edge => {
     return edge.node;
   });
-  const pageInfo = data.data.search.pageInfo;
-  const endCursor = pageInfo.endCursor;
+  const endCursor = data.data.search.pageInfo.endCursor;
+  const hasNextPage = data.data.search.pageInfo.hasNextPage;
   setDates(issues);
-  return { issues, endCursor };
+  return { issues, endCursor, hasNextPage };
 }
 
 // do this here so that we can examine against cutoff date - // TODO: test this
@@ -65,7 +65,6 @@ function makeRepo(issue) {
   const url = repo.url;
   const issues = [formatIssue(issue)];
   const issueMap = new Set();
-  console.log(description);
 
   issueMap.add(issues[0].number); // TODO: Test this- duplicate issues
 
