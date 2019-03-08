@@ -102,6 +102,9 @@ class App extends React.Component {
       this.setState(expandedTableRows);
     };
 
+    const resetExpandedTableRows = () =>
+      this.setState({ expandedTableRows: new Set() });
+
     const setMinDate = e => this.setState({ minDate: e.target.value });
 
     // filtering for minGoodFirstIssues and minStars
@@ -139,6 +142,7 @@ class App extends React.Component {
             finishedLoading={() => finishedLoading()}
             setExpanded={setExpandedTableRows}
             expandedRows={expandedTableRows}
+            resetExpandedRows={resetExpandedTableRows}
           />
         )}
       </div>
