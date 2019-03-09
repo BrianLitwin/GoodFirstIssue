@@ -19,7 +19,7 @@ export class RepoRow extends React.Component {
             >
               {expanded ? "\u2212" : "+"}
             </button>
-            <a href={repo.url} target="blank">
+            <a href={repo.url} target="_blank" rel="noopener noreferrer">
               {repo.title}
             </a>
           </td>

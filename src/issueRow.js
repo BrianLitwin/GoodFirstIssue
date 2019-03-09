@@ -12,7 +12,8 @@ export class IssueRow extends React.Component {
           <div>
             <a
               href={issue.url}
-              target="blank"
+              target="_blank"
+              rel="noopener noreferrer"
               style={{ display: "inline-block", minWidth: `${width}px` }}
             >
               #{issue.number}
