@@ -32,6 +32,7 @@ export default class ResultsTable extends React.Component {
 
     const setSortBy = sortBy => {
       if (sortBy != this.state.sortBy) {
+        this.props.resetExpandedRows();
         this.setState({ sortBy, expandedRows });
       }
     };
