@@ -1,7 +1,7 @@
 import React from "react";
 import "./resultsTable.css";
 import { RepoRow } from "./repoRow";
-import { IssueRow } from "./issueRow";
+import IssueRow from "./issueRow";
 import { sortReposByIssueCount, sortReposByStars } from "./load";
 
 export default class ResultsTable extends React.Component {
