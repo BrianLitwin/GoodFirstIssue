@@ -2,7 +2,7 @@ import React from "react";
 import "./issueRow.css";
 import { formatDate } from "./util";
 
-export class IssueRow extends React.Component {
+export default class IssueRow extends React.Component {
   render() {
     const { issue, width } = this.props;
 
@@ -30,7 +30,7 @@ export class IssueRow extends React.Component {
   }
 }
 
-function IssueLabel(bgc, txt) {
+export function IssueLabel(bgc, txt) {
   const backgroundColor = `#${bgc}`;
   const style = {
     marginLeft: "6px",
