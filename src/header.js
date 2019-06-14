@@ -1,6 +1,5 @@
 import React from "react";
 import { IssueLabel } from './issueRow';
-import "./header.css";
 
 export function Header() {
   return (
