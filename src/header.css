@@ -13,9 +13,11 @@
 .GoodFirstIssue {
   background-color: #7057ff;
   color: #ffffff;
+  border-radius: 10px;
 }
 
 .HelpWanted {
   background-color: #008672;
   color: #ffffff;
+  border-radius: 10px;
 }
