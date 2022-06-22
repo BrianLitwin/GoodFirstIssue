@@ -45,6 +45,7 @@ function SelectForm(props) {
 }
 
 export function LanguagePicker(props) {
+  //Mapping through options array
   const options = [
     "ActionScript",
     "C",
