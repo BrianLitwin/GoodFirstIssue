@@ -89,7 +89,7 @@ export function MinGoodFirstIssues(props) {
 }
 
 export function MinStars(props) {
-  const options = [0, 1, 2, 3, 4, 5, 10, 25, 50, 100, 250, 500, 1000].map(
+  const options = [ 50, 100, 250, 500, 1000].map(
     mapOptions
   );
   return (

@@ -18,7 +18,7 @@ class App extends React.Component {
       loading: false,
       repositories: [],
       labels: ["good first issue", "help wanted"],
-      loadingMessage: "Fetching Issues... ",
+      loadingMessage: "loadingMessage: Searching GitHub for beginner-friendly repos... ",
       minGoodFirstIssues: 1,
       minStars: 0,
       minDate: initMinDate(),
@@ -99,7 +99,7 @@ class App extends React.Component {
       } else {
         expandedTableRows.add(i);
       }
-      this.setState(expandedTableRows);
+      this.setState({expandedTableRows});
     };
 
     const setMinDate = e => this.setState({ minDate: e.target.value });
@@ -117,7 +117,8 @@ class App extends React.Component {
       <div
         style={{
           margin: "0 auto",
-          maxWidth: 900
+           maxWidth: 1200,
+         padding: "20px"
         }}
       >
         {Header()}
