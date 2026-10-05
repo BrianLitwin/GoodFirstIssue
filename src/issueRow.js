@@ -30,7 +30,7 @@ export class IssueRow extends React.Component {
   }
 }
 
-function IssueLabel(bgc, txt) {
+export function IssueLabel(bgc, txt) {
   const backgroundColor = `#${bgc}`;
   const style = {
     marginLeft: "6px",

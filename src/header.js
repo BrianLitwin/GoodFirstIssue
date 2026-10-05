@@ -1,5 +1,6 @@
 import React from "react";
 import "./header.css";
+import { IssueLabel } from "./issueRow";
 
 export function Header() {
   return (
@@ -7,12 +8,10 @@ export function Header() {
       <h1>Find Great Open Source Projects</h1>
       <p>Made for new contributors to find great Open Source projects.</p>
       <p>
-        Discover Issues and Repositories with
-        <label className="IssueLabel GoodFirstIssue">
-          good first issue
-        </label>{" "}
-        and
-        <label className="IssueLabel HelpWanted">help wanted</label> labels.
+        Discover Issues and Repositories with{" "}
+        {IssueLabel("006b75", "good first issue")}{" "}
+        and{" "}
+        {IssueLabel("d73a4a", "help wanted")} labels.
       </p>
     </React.Fragment>
   );
